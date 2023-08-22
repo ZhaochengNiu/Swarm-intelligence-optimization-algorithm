@@ -80,15 +80,14 @@ class sca():
         self.X = np.clip(self.X, self.lb, self.ub)
         self.Y = [self.func(self.X[i]) for i in range(len(self.X))]  # Function for fitness evaluation of new solutions
 
-
     def run(self):
         for i in range(self.max_iter):
             self.update(i)
             self.update_pbest()
             self.update_gbest()
             self.gbest_y_hist.append(self.gbest_y)
-        self.best_x, self.best_y = self.gbest_x, self.gbest_y
-        return self.best_x, self.best_y
+        best_x, best_y = self.gbest_x, self.gbest_y
+        return best_x, best_y
 
 
 if __name__ == '__main__':
@@ -103,10 +102,15 @@ if __name__ == '__main__':
     # plt.plot(sca.gbest_y_hist)
     # plt.show()
 
+    # test
     # print(np.array(3.5) * np.ones(5))
     LB = [-5, 0]
     HB = [0, 5]
     X = np.random.uniform(low=LB, high=HB, size=(10, 2))
-    print(X[1])
-    print(len(X))
+    print(X[1]) # 输出 X 的第一行
+    print(len(X)) # 输出 X 的行数
+    print(X)
+    LClip = [-1, 0]
+    HClip = [0, 1]
+    X = np.clip(X, LClip, HClip)
     print(X)
