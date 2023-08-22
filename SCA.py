@@ -30,7 +30,8 @@ class sca():
 
         self.X = np.random.uniform(low=self.lb, high=self.ub, size=(self.pop, self.n_dim))
         self.Y = [self.func(self.X[i]) for i in range(len(self.X))] # y = f(x) for all particles
-
+        # X[i] 表示 X 的第 i 行
+        # len(X) 表示 X 的行数
         self.pbest_x = self.X.copy()  # personal best location of every particle in history
         self.pbest_y = [np.inf for i in range(self.pop)]  # best image of every particle in history
         self.gbest_x = self.pbest_x.mean(axis=0).reshape(1, -1)  # global best location for all particles
@@ -89,14 +90,23 @@ class sca():
         self.best_x, self.best_y = self.gbest_x, self.gbest_y
         return self.best_x, self.best_y
 
+
 if __name__ == '__main__':
-    n_dim = 2
-    lb = [-512 for i in range(n_dim)]
-    ub = [512 for i in range(n_dim)]
-    demo_func = test_function.f23
-    sca = sca(n_dim=2, pop_size=40, max_iter=150, lb=lb, ub=ub, func=demo_func)
-    sca.run()
-    print('best_x is ', sca.gbest_x, 'best_y is', sca.gbest_y)
-    print(f'{demo_func(sca.gbest_x)}\t{sca.gbest_x}')
-    plt.plot(sca.gbest_y_hist)
-    plt.show()
+    # n_dim = 2
+    # lb = [-512 for i in range(n_dim)]
+    # ub = [512 for i in range(n_dim)]
+    # demo_func = test_function.f23
+    # sca = sca(n_dim=2, pop_size=40, max_iter=150, lb=lb, ub=ub, func=demo_func)
+    # sca.run()
+    # print('best_x is ', sca.gbest_x, 'best_y is', sca.gbest_y)
+    # print(f'{demo_func(sca.gbest_x)}\t{sca.gbest_x}')
+    # plt.plot(sca.gbest_y_hist)
+    # plt.show()
+
+    # print(np.array(3.5) * np.ones(5))
+    LB = [-5, 0]
+    HB = [0, 5]
+    X = np.random.uniform(low=LB, high=HB, size=(10, 2))
+    print(X[1])
+    print(len(X))
+    print(X)
