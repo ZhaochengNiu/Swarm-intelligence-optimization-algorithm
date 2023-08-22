@@ -34,7 +34,8 @@ class sca():
         # len(X) 表示 X 的行数
         self.pbest_x = self.X.copy()  # personal best location of every particle in history
         self.pbest_y = [np.inf for i in range(self.pop)]  # best image of every particle in history
-        self.gbest_x = self.pbest_x.mean(axis=0).reshape(1, -1)  # global best location for all particles
+        # self.gbest_x = self.pbest_x.mean(axis=0).reshape(1, -1)  # global best location for all particles
+        self.gbest_x = self.pbest_x.mean(axis=0)
         self.gbest_y = np.inf  # global best y for all particles
         self.gbest_y_hist = []  # gbest_y of every iteration
         self.update_gbest()
@@ -107,10 +108,16 @@ if __name__ == '__main__':
     LB = [-5, 0]
     HB = [0, 5]
     X = np.random.uniform(low=LB, high=HB, size=(10, 2))
-    print(X[1]) # 输出 X 的第一行
-    print(len(X)) # 输出 X 的行数
+    gbest_x1 = X.mean(axis=0).reshape(1, -1)
+    print(gbest_x1)
+    gbest_x1 = X.mean(axis=0)
+    print(gbest_x1)
+    gbest_x2 = X[0, :].copy()
+    print(gbest_x2)
+    # print(X[1]) # 输出 X 的第一行
+    # print(len(X)) # 输出 X 的行数
     print(X)
     LClip = [-1, 0]
     HClip = [0, 1]
     X = np.clip(X, LClip, HClip)
-    print(X)
+    # print(X)
