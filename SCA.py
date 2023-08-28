@@ -108,6 +108,9 @@ if __name__ == '__main__':
     # print(np.array(3.5) * np.ones(5))
     # LB = [-5, 0]
     # HB = [0, 5]
+    # LB, HB = np.array(LB) * np.ones(2), np.array(HB) * np.ones(2)
+    # print(LB)
+    # print(HB)
     # X = np.random.uniform(low=LB, high=HB, size=(10, 2))
     # gbest_x1 = X.mean(axis=0).reshape(1, -1)
     # print(gbest_x1)
@@ -152,6 +155,11 @@ if __name__ == '__main__':
     # X[0, 1] = 0
     # print(gbest_x)
 
+    # x = np.ones((4,4))
+    # y = x.copy()
+    # y[1] = x[1]
+    # x[1] = [10,10,10,10]
+    # print(y)
 ###################################################
     # 1、非数组变量
     # 一般的在python中我们将变量a的值赋值给变量b，可以进行如下操作
