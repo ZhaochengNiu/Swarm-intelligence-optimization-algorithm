@@ -49,8 +49,8 @@ class sca():
         '''
         for i in range(len(self.Y)):
             if self.pbest_y[i] > self.Y[i]:
-                self.pbest_x[i] = self.X[i]
-                self.pbest_y[i] = self.Y[i]
+                self.pbest_x[i] = self.X[i].copy()
+                self.pbest_y[i] = self.Y[i].copy()
 
     def update_gbest(self):
         '''
@@ -59,8 +59,9 @@ class sca():
         '''
         idx_min = self.pbest_y.index(min(self.pbest_y))
         if self.gbest_y > self.pbest_y[idx_min]:
-            self.gbest_x = self.X[idx_min, :].copy() # copy很重要！
-            self.gbest_y = self.pbest_y[idx_min]
+            self.gbest_x = self.pbest_x[idx_min, :].copy() # copy很重要！
+            # self.gbest_x = self.X[idx_min, :].copy() # copy很重要！
+            self.gbest_y = self.pbest_y[idx_min].copy()
 
     def update(self, i):
         r1 = self.a - i * (self.a / self.max_iter)
@@ -93,16 +94,27 @@ class sca():
 
 
 if __name__ == '__main__':
-    n_dim = 2
-    lb = [-512 for i in range(n_dim)]
-    ub = [512 for i in range(n_dim)]
-    demo_func = test_function.f23
-    sca = sca(n_dim=2, pop_size=40, max_iter=150, lb=lb, ub=ub, func=demo_func)
-    sca.run()
-    print('best_x is ', sca.gbest_x, 'best_y is', sca.gbest_y)
-    print(f'{demo_func(sca.gbest_x)}\t{sca.gbest_x}')
-    plt.plot(sca.gbest_y_hist)
-    plt.show()
+    # n_dim = 2
+    # lb = [-512 for i in range(n_dim)]
+    # ub = [512 for i in range(n_dim)]
+    # demo_func = test_function.f23
+    # sca = sca(n_dim=2, pop_size=40, max_iter=150, lb=lb, ub=ub, func=demo_func)
+    # sca.run()
+    # print('best_x is ', sca.gbest_x, 'best_y is', sca.gbest_y)
+    # print(f'{demo_func(sca.gbest_x)}\t{sca.gbest_x}')
+    # plt.plot(sca.gbest_y_hist)
+    # plt.show()
+
+
+    # lb = [-512 for i in range(n_dim)]
+    # ub = [512 for i in range(n_dim)]
+    # deo_func = test_function.f23
+    # sca = sca(n_dim=2, pop_size=40, max_iter=150, lb=lb, ub=ub, func=demo_func)
+    # sca.run()
+    # print('best_x is ', sca.gbest_x, 'best_y is', sca.gbest_y)
+    # print(f'{demo_func(sca.gbest_x)}\t{sca.gbest_x}')
+    # plt.plot(sca.gbest_y_hist)
+    # plt.show()
 
     # # test 1
     # print(np.array(3.5) * np.ones(5))
@@ -111,7 +123,7 @@ if __name__ == '__main__':
     # LB, HB = np.array(LB) * np.ones(2), np.array(HB) * np.ones(2)
     # print(LB)
     # print(HB)
-    # X = np.random.uniform(low=LB, high=HB, size=(10, 2))
+    # X = np.random.uniform(low=0, high=5, size=(10, 2))
     # gbest_x1 = X.mean(axis=0).reshape(1, -1)
     # print(gbest_x1)
     # gbest_x1 = X.mean(axis=0)
@@ -156,9 +168,9 @@ if __name__ == '__main__':
     # print(gbest_x)
 
     # x = np.ones((4,4))
-    # y = x.copy()
+    # y = np.ones((4,4))
     # y[1] = x[1]
-    # x[1] = [10,10,10,10]
+    # x[1] = [10, 10, 10, 10]
     # print(y)
 ###################################################
     # 1、非数组变量
@@ -194,3 +206,29 @@ if __name__ == '__main__':
     # print("x = \n", x)
     # print("y = \n", y)
     # 从结果可以看出，x中的第一行元素和y中元素地址是相同的。
+
+
+    # x = np.mat('1 2 3 ; 4 5 6')
+    # y = x.copy()
+    # y[0] = x[0]
+    # x[0] += 1
+    # print("x = \n", x)
+    # print("y = \n", y)
+
+    # X = np.random.uniform(low=0, high=5, size=(3, 3))
+    # Y = X.copy()
+    # print(X)
+    # print(Y)
+    # print('=======')
+    # Y[1] = X[1]
+    # X[1] = -3
+    # print(X)
+    # print(Y)
+
+    x = np.random.uniform(low=0, high=5, size=(3, 3))
+    print(x)
+    y = x.copy()
+    y[0] = x[0]
+    x[0] += 1
+    print("x = \n", x)
+    print("y = \n", y)
