@@ -225,10 +225,10 @@ if __name__ == '__main__':
     # print(X)
     # print(Y)
 
-    x = np.random.uniform(low=0, high=5, size=(3, 3))
-    print(x)
-    y = x.copy()
-    y[0] = x[0]
-    x[0] += 1
-    print("x = \n", x)
-    print("y = \n", y)
+    # x = np.random.uniform(low=0, high=5, size=(3, 3))
+    # print(x)
+    # y = x.copy()
+    # y[0] = x[0]
+    # x[0] += 1
+    # print("x = \n", x)
+    # print("y = \n", y)
